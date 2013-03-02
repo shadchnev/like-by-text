@@ -13,7 +13,8 @@ post '/send_text' do
   account_sid = 'ACf8ed5fa862f3467651428344584118bb'
   auth_token = '2fb33294869d005883105b812b035d17'    
   client = Twilio::REST::Client.new(account_sid, auth_token)
-  name = params["name"] || "Someone"
+  name = params["name"]
+  name = "Someone" if name == ""
   if params["like"] == "yes"
     message = " likes"
   else
