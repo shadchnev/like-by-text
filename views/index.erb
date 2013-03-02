@@ -1,4 +1,9 @@
 <h1>Hey, do you like my photo?</h1>
+<% if flash[:notice] %>
+  <div id="flash">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 <img id="photo" src="/images/photo.jpg">
 <form action="/send_text" method="post">
   <div class="answer">

@@ -1,6 +1,9 @@
 require 'rubygems' # for 1.8.6
 require 'sinatra'
+require 'sinatra/flash'
 require 'twilio-ruby'
+
+enable :sessions
 
 get '/' do
   erb :index
@@ -17,6 +20,7 @@ post '/send_text' do
     message = " doesn't like"
   end    
   text = name + message + " your photo!"
-  client.account.sms.messages.create(:from => '+441290211061', :to => '+447923374199', :body => text)
+  client.account.sms.messages.create(:from => '+441290211061', :to => '+447923374199', :body => text)  
+  flash[:notice] = "Thank you!"
   redirect "/"
 end
